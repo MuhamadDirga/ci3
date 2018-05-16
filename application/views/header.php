@@ -32,8 +32,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">HOME<span class="sr-only">(current)</span></a></li>
-        <li><a href="<?php echo site_url('blog/post')?>">POST</a></li>
+        <li class="active"><a href="<?php echo site_url('blog')?>">BIODATA<span class="sr-only">(current)</span></a></li>
+        <li><a href="<?php echo site_url('blog/post')?>">SIMPLE CRUD</a></li>
         </li>
       </ul>
       <form class="navbar-form navbar-right">
@@ -46,8 +46,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-<div class="page-header">
-  <h1>Share Your<small>Story</small></h1>
-</div>
 </body>
 </html>

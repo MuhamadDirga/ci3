@@ -6,22 +6,29 @@ class blog extends CI_Controller{
    {
       parent::__construct();
       $this->load->model('Blog_models');
+      $this->load->model('biodata');
    }
 
 	public function index(){
+      $data['biodata_array']=$this->biodata->getBiodataQueryArray();
+      $data['biodata_object']=$this->biodata->getBiodataQueryObject();
 		$this->load->view('header');
-		$this->load->view('container');
+      $this->load->view('home', $data);
 		$this->load->view('footer');
 	}
 
 	public function post(){
+      $this->load->view('header');
 		$data['records'] = $this->Blog_models->getAll();
-		$this->load->view('post', $data);
+		$this->load->view('SimpleCRUD/post', $data);
+      $this->load->view('footer');
 	}
 
 	 public function add_view() {
+         $this->load->view('header');
          $data['error'] = "";
-         $this->load->view('post_add_view',$data);
+         $this->load->view('SimpleCRUD/post_add_view',$data);
+         $this->load->view('footer');
       } 
 
 	public function add_action() { 
@@ -34,7 +41,9 @@ class blog extends CI_Controller{
          
          if ( ! $this->upload->do_upload('image_file')) {
             $error = array('error' => $this->upload->display_errors()); 
-            $this->load->view('post_add_view', $error); 
+            $this->load->view('header');
+            $this->load->view('SimpleCRUD/post_add_view', $error); 
+            $this->load->view('footer');
          }
          
          else { 
@@ -53,7 +62,9 @@ class blog extends CI_Controller{
       }
 
       public function byId($id){
-       $data['records'] = $this->Blog_models->getOne($id); 
-         $this->load->view('post_view',$data); 
+       $data['records'] = $this->Blog_models->getOne($id);
+         $this->load->view('header'); 
+         $this->load->view('SimpleCRUD/post_view',$data); 
+         $this->load->view('footer');
    }
 }
